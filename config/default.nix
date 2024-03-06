@@ -1,4 +1,4 @@
-_: {
+{pkgs, ...}: {
   # Import all your configuration modules here
   imports = [
     ./catppuccin.nix
@@ -120,17 +120,6 @@ _: {
           '';
         };
       }
-      {
-        event = ["BufWritePre"];
-        pattern = ["*"];
-        callback = {
-          __raw = ''
-            function (args)
-              require("conform").format({ bufnr = args.buf })
-            end
-          '';
-        };
-      }
     ];
     autoGroups = {
       checktime = {
@@ -167,6 +156,13 @@ _: {
         end
       end
     '';
+    extraPackages = with pkgs; [
+      alejandra
+    ];
+    extraPython3Packages = py:
+      with py; [
+        black
+      ];
     globals = {
       mapleader = " ";
       maplocalleader = " ";
