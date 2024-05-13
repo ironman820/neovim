@@ -14,12 +14,14 @@
   ];
   plugins.oil = {
     enable = true;
-    columns = {
-      icon.enable = true;
-      size.enable = true;
-      type.enable = true;
+    settings = {
+      columns = [
+        "icon"
+        "size"
+        "type"
+      ];
+      float.padding = 5;
+      view_options.show_hidden = true;
     };
-    float.padding = 5;
-    viewOptions.showHidden = true;
   };
 }

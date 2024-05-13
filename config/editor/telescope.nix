@@ -265,7 +265,7 @@
   ];
   plugins.telescope = {
     enable = true;
-    defaults = {
+    settings.defaults = {
       prompt_prefix = " ";
       selection_caret = " ";
       get_selection_window = {

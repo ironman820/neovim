@@ -4,14 +4,14 @@
     # enableLspFormat = true;
     sources = {
       diagnostics = {
-        flake8.enable = true;
-        luacheck.enable = true;
+        # flake8.enable = true;
+        # luacheck.enable = true;
         statix.enable = true;
       };
-      formatting = {
-        trim_newlines.enable = true;
-        trim_whitespace.enable = true;
-      };
+      # formatting = {
+      #   trim_newlines.enable = true;
+      #   trim_whitespace.enable = true;
+      # };
     };
   };
 }

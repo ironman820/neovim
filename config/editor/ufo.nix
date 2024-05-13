@@ -1,6 +1,6 @@
 {
   config = {
-    options = {
+    opts = {
       foldcolumn = "1";
       foldenable = true;
       foldlevelstart = 99;

@@ -5,7 +5,7 @@
     ./conform.nix
     ./luasnip.nix
     ./barbecue.nix
-    ./nvim-cmp.nix
+    ./cmp.nix
     ./ts-context-commentstring.nix
   ];
 }

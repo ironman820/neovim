@@ -1,10 +1,11 @@
 {
   plugins.gitsigns = {
     enable = true;
-    currentLineBlame = true;
-    currentLineBlameOpts.virtTextPos = "right_align";
-    onAttach = {
-      function = ''
+    settings = {
+      current_line_blame = true;
+      current_line_blame_opts.virtTextPos = "right_align";
+      numhl = true;
+      on_attach = ''
         function(buffer)
           if vim.api.nvim_command_output("!git rev-parse --is-inside-work-tree") == false then
             return false
@@ -30,48 +31,47 @@
             map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>", "GitSigns Select Hunk")
           end
       '';
+      preview_config = {
+        border = "single";
+        style = "minimal";
+        relative = "cursor";
+        row = 0;
+        col = 1;
+      };
+      signs = {
+        add = {
+          hl = "GitSignsAdd";
+          text = "";
+          numhl = "GitSignsAddNr";
+          linehl = "GitSignsAddLn";
+        };
+        change = {
+          hl = "GitSignsChange";
+          text = "±";
+          numhl = "GitSignsChangeNr";
+          linehl = "GitSignsChangeLn";
+        };
+        delete = {
+          hl = "GitSignsDelete";
+          text = "󰆴";
+          numhl = "GitSignsDeleteNr";
+          linehl = "GitSignsDeleteLn";
+        };
+        topdelete = {
+          hl = "GitSignsDelete";
+          text = "※";
+          numhl = "GitSignsDeleteNr";
+          linehl = "GitSignsDeleteLn";
+        };
+        changedelete = {
+          hl = "GitSignsChange";
+          text = "▲";
+          numhl = "GitSignsChangeNr";
+          linehl = "GitSignsChangeLn";
+        };
+        untracked = {text = "▎";};
+      };
     };
-    previewConfig = {
-      border = "single";
-      style = "minimal";
-      relative = "cursor";
-      row = 0;
-      col = 1;
-    };
-    signs = {
-      add = {
-        hl = "GitSignsAdd";
-        text = "";
-        numhl = "GitSignsAddNr";
-        linehl = "GitSignsAddLn";
-      };
-      change = {
-        hl = "GitSignsChange";
-        text = "±";
-        numhl = "GitSignsChangeNr";
-        linehl = "GitSignsChangeLn";
-      };
-      delete = {
-        hl = "GitSignsDelete";
-        text = "󰆴";
-        numhl = "GitSignsDeleteNr";
-        linehl = "GitSignsDeleteLn";
-      };
-      topdelete = {
-        hl = "GitSignsDelete";
-        text = "※";
-        numhl = "GitSignsDeleteNr";
-        linehl = "GitSignsDeleteLn";
-      };
-      changedelete = {
-        hl = "GitSignsChange";
-        text = "▲";
-        numhl = "GitSignsChangeNr";
-        linehl = "GitSignsChangeLn";
-      };
-      untracked = {text = "▎";};
-    };
-    numhl = true;
     # yadm.enable = true;
   };
 }
