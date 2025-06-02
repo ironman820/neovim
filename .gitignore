@@ -1,0 +1,7 @@
+tags
+test.sh
+.luarc.json
+nvim
+Session.vim
+spell/
+lazy-lock.json
