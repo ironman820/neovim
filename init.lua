@@ -35,17 +35,11 @@ vim.g.have_nerd_font = true
 -- NOTE: You can change these options as you wish!
 --  For more options, you can see `:help option-list`
 
--- Make line numbers default
-vim.o.number = true
--- You can also add relative line numbers, to help with jumping.
---  Experiment for yourself to see if you like it!
-vim.o.relativenumber = true
+-- Autowrite files on buffer change
+vim.o.autowrite = true
 
--- Enable mouse mode, can be useful for resizing splits for example!
-vim.o.mouse = 'a'
-
--- Don't show the mode, since it's already in the status line
-vim.o.showmode = false
+-- Enable break indent
+vim.o.breakindent = true
 
 -- Sync clipboard between OS and Neovim.
 --  Schedule the setting after `UiEnter` because it can increase startup-time.
@@ -55,35 +49,36 @@ vim.schedule(function()
   vim.o.clipboard = 'unnamedplus'
 end)
 
--- Enable break indent
-vim.o.breakindent = true
+-- vim.o.completeopt = 'menu,monuone,noselect'
+vim.o.conceallevel = 2
 
-vim.o.shortmess = 'IWcC'
+-- if performing an operation that would fail due to unsaved changes in the buffer (like `:q`),
+-- instead raise a dialog asking if you wish to save the current file(s)
+-- See `:help 'confirm'`
+vim.o.confirm = true
 
--- Save undo history
-vim.o.undofile = true
+vim.o.cursorline = true
+-- vim.o.fillchars = {
+--   foldopen = '',
+--   foldclose = '',
+--   fold = ' ',
+--   foldsep = ' ',
+--   diff = '╱',
+--   eob = ' '
+-- }
+vim.o.foldlevel = 99
+vim.o.formatoptions = 'jcroqlnt'
+vim.o.grepformat = '%f:%l:%c:%m'
+vim.o.grepprg = 'rg --vimgrep'
 
 -- Case-insensitive searching UNLESS \C or one or more capital letters in the search term
 vim.o.ignorecase = true
 vim.o.smartcase = true
 
--- Tabs vs. Spaces
-vim.o.tabstop = 2
-vim.o.shiftwidth = 0
-vim.o.expandtab = true
+-- Preview substitutions live, as you type!
+vim.o.inccommand = 'nosplit'
 
--- Keep signcolumn on by default
-vim.o.signcolumn = 'yes'
-
--- Decrease update time
-vim.o.updatetime = 250
-
--- Decrease mapped sequence wait time
-vim.o.timeoutlen = 300
-
--- Configure how new splits should be opened
-vim.o.splitright = true
-vim.o.splitbelow = true
+vim.o.laststatus = 3
 
 -- Sets how neovim will display certain whitespace characters in the editor.
 --  See `:help 'list'`
@@ -96,19 +91,62 @@ vim.o.splitbelow = true
 vim.o.list = true
 vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
 
--- Preview substitutions live, as you type!
-vim.o.inccommand = 'split'
+-- Enable mouse mode, can be useful for resizing splits for example!
+vim.o.mouse = 'a'
 
--- Show which line your cursor is on
-vim.o.cursorline = true
+-- Make line numbers default
+vim.o.number = true
+-- You can also add relative line numbers, to help with jumping.
+vim.o.relativenumber = true
+
+vim.o.pumblend = 10
+vim.o.pumheight = 10
 
 -- Minimal number of screen lines to keep above and below the cursor.
-vim.o.scrolloff = 10
+vim.o.scrolloff = 4
+vim.o.sidescrolloff = 8
 
--- if performing an operation that would fail due to unsaved changes in the buffer (like `:q`),
--- instead raise a dialog asking if you wish to save the current file(s)
--- See `:help 'confirm'`
-vim.o.confirm = true
+-- vim.o.sessionoptions = { 'buffers', 'curdir', 'tabpages', 'winsize', 'help', 'globals', 'skiprtp', 'folds' }
+
+vim.o.shortmess = 'IWcC'
+
+-- Don't show the mode, since it's already in the status line
+vim.o.showmode = false
+
+-- Keep signcolumn on by default
+vim.o.signcolumn = 'yes'
+
+vim.o.smartcase = true
+vim.o.smartindent = true
+-- vim.o.spelllang = { 'en' }
+
+-- Configure how new splits should be opened
+vim.o.splitbelow = true
+vim.o.splitkeep = 'screen'
+vim.o.splitright = true
+
+-- Tabs vs. Spaces
+vim.o.tabstop = 2
+vim.o.shiftround = true
+vim.o.shiftwidth = 0
+vim.o.expandtab = true
+
+vim.o.termguicolors = true
+
+-- Decrease mapped sequence wait time
+vim.o.timeoutlen = 300
+
+-- Save undo history
+vim.o.undofile = true
+vim.o.undolevels = 10000
+
+-- Decrease update time
+vim.o.updatetime = 200
+
+vim.o.virtualedit = 'block'
+vim.o.wildmode = 'longest:full,full'
+vim.o.winminwidth = 5
+vim.o.wrap = true
 
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
@@ -118,7 +156,7 @@ vim.o.confirm = true
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
 -- Diagnostic keymaps
-vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
+vim.keymap.set('n', '<leader>cq', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
 
 -- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
 -- for people to discover. Otherwise, you normally need to press <C-\><C-n>, which
@@ -148,6 +186,10 @@ vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper win
 -- vim.keymap.set("n", "<C-S-l>", "<C-w>L", { desc = "Move window to the right" })
 -- vim.keymap.set("n", "<C-S-j>", "<C-w>J", { desc = "Move window to the lower" })
 -- vim.keymap.set("n", "<C-S-k>", "<C-w>K", { desc = "Move window to the upper" })
+
+vim.keymap.set('n', '<leader>qq', '<CMD>qa<CR>', { desc = '[Q]uit application' })
+vim.keymap.set('n', '<leader>qQ', '<CMD>qa!<CR>', { desc = '[Q]uit application WITHOUT SAVING' })
+vim.keymap.set('n', '<leader>qw', '<CMD>wqa<CR>', { desc = '[Q]uit application SAVING' })
 
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
@@ -293,10 +335,11 @@ require('lazy').setup({
       spec = {
         { '<leader>b', group = '[B]uffer' },
         { '<leader>c', group = '[C]ode' },
+        { '<leader>h', group = 'Git [H]unk', mode = { 'n', 'v' } },
         { '<leader>l', icon = '󰒲' },
+        { '<leader>q', icon = '󰩈', group = '[Q]uit' },
         { '<leader>s', group = '[S]earch' },
         { '<leader>t', group = '[T]oggle' },
-        { '<leader>h', group = 'Git [H]unk', mode = { 'n', 'v' } },
       },
     },
   },

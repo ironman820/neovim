@@ -1,7 +1,6 @@
-{pkgs, ...}: {
+{ pkgs, ... }: {
   # Import all your configuration modules here
   imports = [
-    ./catppuccin.nix
     ./coding
     ./editor
     ./lsp
@@ -17,10 +16,10 @@
       {
         command = "checktime";
         group = "checktime";
-        event = ["FocusGained" "TermClose" "TermLeave"];
+        event = [ "FocusGained" "TermClose" "TermLeave" ];
       }
       {
-        event = ["VimResized"];
+        event = [ "VimResized" ];
         group = "resize_splits";
         callback = {
           __raw = ''
@@ -33,7 +32,7 @@
         };
       }
       {
-        event = ["BufReadPost"];
+        event = [ "BufReadPost" ];
         group = "last_loc";
         callback = {
           __raw = ''
@@ -54,7 +53,7 @@
         };
       }
       {
-        event = ["FileType"];
+        event = [ "FileType" ];
         group = "close_with_q";
         pattern = [
           "PlenaryTestPopup"
@@ -82,9 +81,9 @@
         };
       }
       {
-        event = ["FileType"];
+        event = [ "FileType" ];
         group = "wrap_spell";
-        pattern = ["gitcommit" "markdown"];
+        pattern = [ "gitcommit" "markdown" ];
         callback = {
           __raw = ''
             function()
@@ -95,7 +94,7 @@
         };
       }
       {
-        event = ["BufWritePre"];
+        event = [ "BufWritePre" ];
         group = "auto_create_dir";
         callback = {
           __raw = ''
@@ -150,8 +149,6 @@
         black
       ];
     globals = {
-      mapleader = " ";
-      maplocalleader = " ";
       root_spec = [
         "lsp"
         [
@@ -192,7 +189,7 @@
           expr = true;
           silent = true;
         };
-        mode = ["n" "x"];
+        mode = [ "n" "x" ];
       }
       {
         action = "v:count == 0 ? 'gj' : 'j'";
@@ -201,7 +198,7 @@
           expr = true;
           silent = true;
         };
-        mode = ["n" "x"];
+        mode = [ "n" "x" ];
       }
       {
         action = "v:count == 0 ? 'gk' : 'k'";
@@ -210,7 +207,7 @@
           expr = true;
           silent = true;
         };
-        mode = ["n" "x"];
+        mode = [ "n" "x" ];
       }
       {
         action = "v:count == 0 ? 'gk' : 'k'";
@@ -219,7 +216,7 @@
           expr = true;
           silent = true;
         };
-        mode = ["n" "x"];
+        mode = [ "n" "x" ];
       }
       {
         action = "<C-w>h";
@@ -357,7 +354,7 @@
         action = "<cmd>noh<cr><esc>";
         key = "<esc>";
         options.desc = "Escape and clear hlsearch";
-        mode = ["i" "n"];
+        mode = [ "i" "n" ];
       }
       {
         action = "<Cmd>nohlsearch<Bar>diffupdate<Bar>normal! <C-L><CR>";
@@ -448,7 +445,7 @@
         action = "<cmd>w<cr><esc>";
         key = "<C-s>";
         options.desc = "Save file";
-        mode = ["i" "x" "n" "s"];
+        mode = [ "i" "x" "n" "s" ];
       }
       {
         action = "<cmd>norm! K<cr>";
@@ -683,60 +680,5 @@
         mode = "n";
       }
     ];
-    options = {
-      autowrite = true;
-      clipboard = "unnamedplus";
-      completeopt = "menu,menuone,noselect";
-      conceallevel = 2;
-      confirm = true;
-      cursorline = true;
-      expandtab = true;
-      formatoptions = "jcroqlnt";
-      grepformat = "%f:%l:%c:%m";
-      grepprg = "rg --vimgrep";
-      ignorecase = true;
-      inccommand = "nosplit";
-      laststatus = 3;
-      list = true;
-      mouse = "a";
-      number = true;
-      pumblend = 10;
-      pumheight = 10;
-      relativenumber = true;
-      scrolloff = 4;
-      sessionoptions = ["buffers" "curdir" "tabpages" "winsize" "help" "globals" "skiprtp" "folds"];
-      shiftround = true;
-      shiftwidth = 2;
-      showmode = false;
-      sidescrolloff = 8;
-      signcolumn = "yes";
-      smartcase = true;
-      smartindent = true;
-      spelllang = ["en"];
-      splitbelow = true;
-      splitkeep = "screen";
-      splitright = true;
-      tabstop = 2;
-      termguicolors = true;
-      timeoutlen = 300;
-      undofile = true;
-      undolevels = 10000;
-      updatetime = 200;
-      virtualedit = "block";
-      wildmode = "longest:full,full";
-      winminwidth = 5;
-      wrap = true;
-      fillchars = {
-        foldopen = "";
-        foldclose = "";
-        fold = " ";
-        foldsep = " ";
-        diff = "╱";
-        eob = " ";
-      };
-
-      foldlevel = 99;
-      # foldmethod = "indent";
-    };
   };
 }
