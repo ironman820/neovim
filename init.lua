@@ -58,6 +58,8 @@ end)
 -- Enable break indent
 vim.o.breakindent = true
 
+vim.o.shortmess = 'IWcC'
+
 -- Save undo history
 vim.o.undofile = true
 

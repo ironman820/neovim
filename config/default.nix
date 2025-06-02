@@ -20,17 +20,6 @@
         event = ["FocusGained" "TermClose" "TermLeave"];
       }
       {
-        event = ["TextYankPost"];
-        group = "highlight_yank";
-        callback = {
-          __raw = ''
-            function()
-              vim.highlight.on_yank()
-            end
-          '';
-        };
-      }
-      {
         event = ["VimResized"];
         group = "resize_splits";
         callback = {
@@ -144,9 +133,6 @@
         clear = true;
       };
     };
-    extraConfigLua = ''
-      vim.opt.shortmess:append({ W = true, I = true, c = true, C = true })
-    '';
     extraConfigLuaPre = ''
       local diagnostic_goto = function(next, severity)
         local go = next and vim.diagnostic.goto_next or vim.diagnostic.goto_prev
