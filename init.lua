@@ -737,7 +737,7 @@ require('lazy').setup({
     cmd = { 'ConformInfo' },
     keys = {
       {
-        '<leader>f',
+        '<leader>cf',
         function()
           require('conform').format { async = true, lsp_format = 'fallback' }
         end,
@@ -762,7 +762,16 @@ require('lazy').setup({
         end
       end,
       formatters_by_ft = {
+        bash = { 'beautysh' },
+        css = { 'stylint' },
+        html = { 'djlint' },
+        just = { 'just' },
         lua = { 'stylua' },
+        nix = { 'alejandra' },
+        php = { 'phpcbf', 'php_cs_fixer' },
+        python = { 'isort', 'black', 'autoflake' },
+        ['*'] = { 'auto_optional', 'codespell', 'trim_newlines', 'trim_whitespace' },
+        ['_'] = { 'injected' },
         -- Conform can also run multiple formatters sequentially
         -- python = { "isort", "black" },
         --
@@ -831,7 +840,16 @@ require('lazy').setup({
         -- <c-k>: Toggle signature help
         --
         -- See :h blink-cmp-config-keymap for defining your own keymap
-        preset = 'default',
+        preset = 'none',
+        ['<C-j>'] = { 'select_next', 'fallback' },
+        ['<C-k>'] = { 'select_prev', 'fallback' },
+        ['<C-u>'] = { 'scroll_documentation_up', 'fallback' },
+        ['<C-d>'] = { 'scroll_documentation_down', 'fallback' },
+        -- ['<C-Space>'] = "require(\"cmp\").mapping.complete()";
+        ['<C-e>'] = { 'cancel', 'fallback' },
+        ['<CR>'] = { 'accept', 'fallback' },
+        ['<S-CR>'] = { 'select_and_accept', 'fallback' },
+        ['<C-CR>'] = { 'cancel', 'fallback' },
 
         -- For more advanced Luasnip keymaps (e.g. selecting choice nodes, expansion) see:
         --    https://github.com/L3MON4D3/LuaSnip?tab=readme-ov-file#keymaps
@@ -846,11 +864,20 @@ require('lazy').setup({
       completion = {
         -- By default, you may press `<c-space>` to show the documentation.
         -- Optionally, set `auto_show = true` to show the documentation after a delay.
-        documentation = { auto_show = false, auto_show_delay_ms = 500 },
+        documentation = { auto_show = true, auto_show_delay_ms = 500 },
+        ghost_text = {
+          enabled = true,
+          show_with_menu = true,
+        },
+        menu = {
+          draw = {
+            columns = { { 'label', 'label_description', gap = 1 }, { 'kind_icon', 'kind' } },
+          },
+        },
       },
 
       sources = {
-        default = { 'lsp', 'path', 'snippets', 'lazydev', 'nerdfont' },
+        default = { 'lsp', 'snippets', 'lazydev', 'path', 'nerdfont' },
         providers = {
           lazydev = { module = 'lazydev.integrations.blink', score_offset = 100 },
           nerdfont = { module = 'blink-nerdfont', name = 'Nerd Fonts', score_offset = 15, opts = { insert = true } },
@@ -907,18 +934,58 @@ require('lazy').setup({
       --  - va)  - [V]isually select [A]round [)]paren
       --  - yinq - [Y]ank [I]nside [N]ext [Q]uote
       --  - ci'  - [C]hange [I]nside [']quote
-      require('mini.ai').setup { n_lines = 500 }
+      require('mini.ai').setup {
+        n_lines = 500,
+        custom_textobjects = {
+          o = require('mini.ai').gen_spec.treesitter({
+            a = { '@block.outer', '@conditional.outer', '@loop.outer' },
+            i = { '@block.inner', '@conditional.inner', '@loop.inner' },
+          }, {}),
+          f = require('mini.ai').gen_spec.treesitter({
+            a = '@function.outer',
+            i = '@function.inner',
+          }, {}),
+          c = require('mini.ai').gen_spec.treesitter({
+            a = '@class.outer',
+            i = '@class.inner',
+          }, {}),
+          t = { '<([%p%w]-)%f[^<%w][^<>]->.-</%1>', '^<.->().*()</[^/]->$' },
+        },
+      }
 
       -- Animate cursor movement
       require('mini.animate').setup()
 
       -- Buffer Delete handling
       require('mini.bufremove').setup()
-      vim.keymap.set('n', '<leader>bd', function(bufnr)
-        MiniBufremove.delete(bufnr, false)
+      vim.keymap.set('n', '<leader>bd', function()
+        local bd = require('mini.bufremove').delete
+        if vim.bo.modified then
+          local choice = vim.fn.confirm(('Save changes to %q?'):format(vim.fn.bufname()), '&Yes\n&No\n&Cancel')
+          if choice == 1 then -- Yes
+            vim.cmd.write()
+            bd(0)
+          elseif choice == 2 then -- No
+            bd(0, true)
+          end
+        else
+          bd(0)
+        end
       end, { desc = '[D]elete buffer' })
+      vim.keymap.set('n', '<leader>bD', function()
+        require('mini.bufremove').delete(0, true)
+      end, { desc = '[D]elete buffer (Force)' })
 
       require('mini.cursorword').setup()
+      require('mini.files').setup()
+      vim.keymap.set('n', '<leader>ff', function()
+        require('mini.files').open()
+      end, { desc = 'Open file explorer' })
+      require('mini.hipatterns').setup {
+        highlighters = {
+          hex_color = require('mini.hipatterns').gen_highlighter.hex_color(),
+        },
+      }
       -- require('mini.jump').setup()
       require('mini.jump2d').setup()
       vim.keymap.set('n', 'f', function()
