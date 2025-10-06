@@ -1,6 +1,6 @@
 -- NOTE: These 2 need to be set up before any plugins are loaded.
 vim.g.mapleader = ' '
-vim.g.maplocalleader = '\\'
+vim.g.maplocalleader = ' '
 
 -- [[ Setting options ]]
 -- See `:help vim.o`
@@ -12,12 +12,17 @@ vim.g.maplocalleader = '\\'
 vim.opt.list = true
 vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
 
+vim.g.snacks_animate = true
+vim.g.root_spec = { "lsp", { ".git", "lua" }, "cwd" }
+vim.g.deprecation_warnings = false
+vim.g.trouble_lualine = true
+
 -- Set highlight on search
 vim.opt.hlsearch = true
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
 -- Preview substitutions live, as you type!
-vim.opt.inccommand = 'split'
+vim.opt.inccommand = 'nosplit'
 
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.opt.scrolloff = 10
@@ -31,12 +36,54 @@ vim.o.mouse = 'a'
 -- Indent
 -- vim.o.smarttab = true
 vim.opt.cpoptions:append('I')
+vim.opt.autowrite = true
 vim.o.expandtab = true
--- vim.o.smartindent = true
+vim.o.smartindent = true
 -- vim.o.autoindent = true
--- vim.o.tabstop = 4
--- vim.o.softtabstop = 4
 -- vim.o.shiftwidth = 4
+
+vim.opt.fillchars = {
+  foldopen = "",
+  foldclose = "",
+  fold = " ",
+  foldsep = " ",
+  diff = "╱",
+  eob = " ",
+}
+vim.opt.foldlevel = 99
+vim.opt.foldmethod = "indent"
+vim.opt.foldtext = ""
+vim.opt.formatoptions = "jcroqlnt" -- tcqj
+vim.opt.grepformat = "%f:%l:%c:%m"
+vim.opt.grepprg = "rg --vimgrep"
+vim.opt.jumpoptions = "view"
+vim.opt.laststatus = 3 -- global statusline
+vim.opt.linebreak = true -- Wrap lines at convenient points
+vim.opt.pumblend = 10 -- Popup blend
+vim.opt.pumheight = 10 -- Maximum number of entries in a popup
+vim.opt.ruler = false -- Disable the default ruler
+vim.opt.sessionoptions = { "buffers", "curdir", "tabpages", "winsize", "help", "globals", "skiprtp", "folds" }
+vim.opt.shiftround = true -- Round indent
+vim.opt.shiftwidth = 2 -- Size of an indent
+vim.opt.shortmess:append({ W = true, I = true, c = true, C = true })
+vim.opt.showmode = false -- Dont show mode since we have a statusline
+vim.opt.sidescrolloff = 8 -- Columns of context
+vim.opt.smoothscroll = true
+vim.opt.spelllang = { "en" }
+vim.opt.splitbelow = true -- Put new windows below current
+vim.opt.splitkeep = "screen"
+vim.opt.splitright = true -- Put new windows right of current
+vim.opt.tabstop = 2 -- Number of spaces tabs count for
+vim.opt.termguicolors = true -- True color support
+vim.opt.timeoutlen = vim.g.vscode and 1000 or 300 -- Lower than default (1000) to quickly trigger which-key
+vim.opt.undolevels = 10000
+vim.opt.virtualedit = "block" -- Allow cursor to move where there is no text in visual block mode
+vim.opt.wildmode = "longest:full,full" -- Command-line completion mode
+vim.opt.winminwidth = 5 -- Minimum window width
+-- vim.opt.wrap = false -- Disable line wrap
+
+-- Fix markdown indentation settings
+vim.g.markdown_recommended_style = 0
 
 -- stops line wrapping from being confusing
 vim.o.breakindent = true
@@ -57,7 +104,11 @@ vim.o.updatetime = 250
 vim.o.timeoutlen = 300
 
 -- Set completeopt to have a better completion experience
-vim.o.completeopt = 'menu,preview,noselect'
+vim.o.completeopt = 'menu,menuone,noselect'
+
+vim.opt.conceallevel = 2
+vim.opt.confirm = true
+vim.opt.cursorline = true
 
 -- NOTE: You should make sure your terminal supports this
 vim.o.termguicolors = true
@@ -85,6 +136,8 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 vim.g.netrw_liststyle=0
 vim.g.netrw_banner=0
 -- [[ Basic Keymaps ]]
+
+vim.keymap.set("n", "q", "<Nop>")
 
 -- Keymaps for better default experience
 -- See `:help vim.keymap.set()`
