@@ -208,6 +208,11 @@
             blink-compat
             colorful-menu-nvim
           ];
+          snacks = with pkgs.vimPlugins; [
+            snacks-nvim
+            mini-icons
+            nvim-web-devicons
+          ];
           treesitter = with pkgs.vimPlugins; [
             nvim-treesitter-textobjects
             nvim-treesitter.withAllGrammars
