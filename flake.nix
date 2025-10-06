@@ -143,6 +143,7 @@
           # you can make subcategories!!!
           # (always isnt a special name, just the one I chose for this subcategory)
           always = [
+            luasnip
             lze
             lzextras
             vim-repeat
