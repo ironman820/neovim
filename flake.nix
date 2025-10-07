@@ -238,6 +238,7 @@
             vim-fugitive
             vim-rhubarb
             nvim-surround
+            mini-bufremove
           ];
           extra = with pkgs.vimPlugins; [
             fidget-nvim

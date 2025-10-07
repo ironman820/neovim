@@ -66,6 +66,7 @@ end
 require('lze').load {
   { import = "myLuaConf.plugins.telescope", },
   { import = "myLuaConf.plugins.treesitter", },
+  { import = "myLuaConf.plugins.bufremove", },
   { import = "myLuaConf.plugins.completion", },
   { import = "myLuaConf.plugins.snacks", },
   {
@@ -292,12 +293,13 @@ require('lze').load {
       require('which-key').setup({
       })
       require('which-key').add {
-        { "<leader><leader>", group = "buffer commands" },
+        { "<leader>b", group = "[b]uffer" },
         { "<leader><leader>_", hidden = true },
         { "<leader>c", group = "[c]ode" },
         { "<leader>c_", hidden = true },
         { "<leader>d", group = "[d]ocument" },
         { "<leader>d_", hidden = true },
+        { "<leader>F", group = "[F]ormat" },
         { "<leader>g", group = "[g]it" },
         { "<leader>g_", hidden = true },
         { "<leader>m", group = "[m]arkdown" },
