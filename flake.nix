@@ -109,9 +109,11 @@
           universal-ctags
           ripgrep
           fd
+          nixd
         ];
         # these names are arbitrary.
         lint = with pkgs; [
+          statix
         ];
         # but you can choose which ones you want
         # per nvim package you export
@@ -126,6 +128,7 @@
         ];
         # and easily check if they are included in lua
         format = with pkgs; [
+          nixfmt
         ];
         neonixdev = {
           # also you can do this.
