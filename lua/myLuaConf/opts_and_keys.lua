@@ -148,10 +148,6 @@ vim.keymap.set("n", "<C-u>", "<C-u>zz", { desc = 'Scroll Up' })
 vim.keymap.set("n", "n", "nzzzv", { desc = 'Next Search Result' })
 vim.keymap.set("n", "N", "Nzzzv", { desc = 'Previous Search Result' })
 
-vim.keymap.set("n", "<leader>b[", "<cmd>bprev<CR>", { desc = 'Previous buffer' })
-vim.keymap.set("n", "<leader>b]", "<cmd>bnext<CR>", { desc = 'Next buffer' })
-vim.keymap.set("n", "<leader>bl", "<cmd>b#<CR>", { desc = 'Last buffer' })
-
 -- see help sticky keys on windows
 vim.cmd([[command! W w]])
 vim.cmd([[command! Wq wq]])

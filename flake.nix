@@ -231,6 +231,7 @@
             telescope-nvim
           ];
           always = with pkgs.vimPlugins; [
+            bufferline-nvim
             nvim-lspconfig
             lualine-nvim
             gitsigns-nvim
