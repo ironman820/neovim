@@ -155,6 +155,7 @@
           ];
           extra = [
             oil-nvim
+            mini-icons
             nvim-web-devicons
           ];
         };
