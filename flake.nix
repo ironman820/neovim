@@ -94,6 +94,7 @@
       lspsAndRuntimeDeps = {
         # some categories of stuff.
         general = with pkgs; [
+          lazygit
           universal-ctags
           ripgrep
           fd
