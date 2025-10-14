@@ -234,6 +234,7 @@
             fidget-nvim
             # lualine-lsp-progress
             noice-nvim
+            transparent-nvim
             undotree
             which-key-nvim
             vim-startuptime

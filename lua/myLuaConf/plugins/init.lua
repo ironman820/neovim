@@ -136,6 +136,15 @@ require('lze').load {
     end,
   },
   {
+    "transparent.nvim",
+    for_cat = 'general.extra',
+    event = "DeferredUIEnter",
+    -- keys = "",
+    after = function(plugin)
+      require('transparent').setup()
+    end,
+  },
+  {
     "fidget.nvim",
     for_cat = 'general.extra',
     event = "DeferredUIEnter",
