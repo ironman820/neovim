@@ -138,9 +138,10 @@
             luasnip
             lze
             lzextras
-            vim-repeat
-            plenary-nvim
+            nui-nvim
             (nvim-notify.overrideAttrs { doCheck = false; }) # TODO: remove overrideAttrs after check is fixed
+            plenary-nvim
+            vim-repeat
           ];
           extra = [
             oil-nvim
@@ -228,12 +229,13 @@
             mini-bufremove
           ];
           extra = with pkgs.vimPlugins; [
+            comment-nvim
+            indent-blankline-nvim
             fidget-nvim
             # lualine-lsp-progress
-            which-key-nvim
-            comment-nvim
+            noice-nvim
             undotree
-            indent-blankline-nvim
+            which-key-nvim
             vim-startuptime
           ];
         };

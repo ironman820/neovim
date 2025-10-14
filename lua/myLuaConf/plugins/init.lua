@@ -68,6 +68,7 @@ require('lze').load {
   { import = "myLuaConf.plugins.bufremove", },
   { import = "myLuaConf.plugins.completion", },
   { import = "myLuaConf.plugins.ibl", },
+  { import = "myLuaConf.plugins.noice", },
   { import = "myLuaConf.plugins.snacks", },
   { import = "myLuaConf.plugins.telescope", },
   { import = "myLuaConf.plugins.treesitter", },
