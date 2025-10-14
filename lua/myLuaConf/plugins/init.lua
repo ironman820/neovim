@@ -67,6 +67,7 @@ require('lze').load {
   { import = "myLuaConf.plugins.bufferline", },
   { import = "myLuaConf.plugins.bufremove", },
   { import = "myLuaConf.plugins.completion", },
+  { import = "myLuaConf.plugins.ibl", },
   { import = "myLuaConf.plugins.snacks", },
   { import = "myLuaConf.plugins.telescope", },
   { import = "myLuaConf.plugins.treesitter", },
@@ -105,14 +106,6 @@ require('lze').load {
     event = "DeferredUIEnter",
     after = function(plugin)
       require('Comment').setup()
-    end,
-  },
-  {
-    "indent-blankline.nvim",
-    for_cat = 'general.extra',
-    event = "DeferredUIEnter",
-    after = function(plugin)
-      require("ibl").setup()
     end,
   },
   {
