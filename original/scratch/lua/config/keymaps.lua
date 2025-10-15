@@ -1,36 +1,5 @@
 local map = require("user-util").map
 
-map("q", "<Nop>")
-
-map("jk", "<esc>", { noremap = true, silent = true, mode = "i" })
-map("kj", "<esc>", { noremap = true, silent = true, mode = "i" })
-
--- better up/down
-map("j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true, mode = { "n", "x" } })
-map("<Down>", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true, mode = { "n", "x" } })
-map("k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true, mode = { "n", "x" } })
-map("<Up>", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true, mode = { "n", "x" } })
-
--- Move to window using the <ctrl> hjkl keys
-map("<C-h>", "<C-w>h", { desc = "Go to left window", remap = true, mode = "n" })
-map("<C-j>", "<C-w>j", { desc = "Go to lower window", remap = true, mode = "n" })
-map("<C-k>", "<C-w>k", { desc = "Go to upper window", remap = true, mode = "n" })
-map("<C-l>", "<C-w>l", { desc = "Go to right window", remap = true, mode = "n" })
-
--- Resize window using <ctrl> arrow keys
-map("<C-Up>", "<cmd>resize +2<cr>", { desc = "Increase window height", mode = "n" })
-map("<C-Down>", "<cmd>resize -2<cr>", { desc = "Decrease window height", mode = "n" })
-map("<C-Left>", "<cmd>vertical resize -2<cr>", { desc = "Decrease window width", mode = "n" })
-map("<C-Right>", "<cmd>vertical resize +2<cr>", { desc = "Increase window width", mode = "n" })
-
--- Move Lines
-map("<A-j>", "<cmd>m .+1<cr>==", { desc = "Move down", mode = "n" })
-map("<A-k>", "<cmd>m .-2<cr>==", { desc = "Move up", mode = "n" })
-map("<A-j>", "<esc><cmd>m .+1<cr>==gi", { desc = "Move down", mode = "i" })
-map("<A-k>", "<esc><cmd>m .-2<cr>==gi", { desc = "Move up", mode = "i" })
-map("<A-j>", ":m '>+1<cr>gv=gv", { desc = "Move down", mode = "v" })
-map("<A-k>", ":m '<-2<cr>gv=gv", { desc = "Move up", mode = "v" })
-
 -- buffers
 map("<S-h>", "<cmd>bprevious<cr>", { desc = "Prev buffer", mode = "n" })
 map("<S-l>", "<cmd>bnext<cr>", { desc = "Next buffer", mode = "n" })
@@ -38,9 +7,6 @@ map("[b", "<cmd>bprevious<cr>", { desc = "Prev buffer", mode = "n" })
 map("]b", "<cmd>bnext<cr>", { desc = "Next buffer", mode = "n" })
 map("<leader>bb", "<cmd>e #<cr>", { desc = "Switch to Other Buffer", mode = "n" })
 map("<leader>`", "<cmd>e #<cr>", { desc = "Switch to Other Buffer", mode = "n" })
-
--- Clear search with <esc>
-map("<esc>", "<cmd>noh<cr><esc>", { desc = "Escape and clear hlsearch", mode = { "i", "n" } })
 
 -- Clear search, diff update and redraw
 -- taken from runtime/lua/_editor.lua
@@ -63,15 +29,8 @@ map(",", ",<c-g>u", { mode = "i" })
 map(".", ".<c-g>u", { mode = "i" })
 map(";", ";<c-g>u", { mode = "i" })
 
--- save file
-map("<C-s>", "<cmd>w<cr><esc>", { desc = "Save file", mode = { "i", "x", "n", "s" } })
-
 --keywordprg
 map("<leader>K", "<cmd>norm! K<cr>", { desc = "Keywordprg", mode = "n" })
-
--- better indenting
-map("<", "<gv", { mode = "v" })
-map(">", ">gv", { mode = "v" })
 
 -- new file
 map("<leader>fn", "<cmd>enew<cr>", { desc = "New File", mode = "n" })
