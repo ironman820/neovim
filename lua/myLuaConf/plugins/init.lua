@@ -109,6 +109,15 @@ require('lze').load {
     end,
   },
   {
+    "cloak.nvim",
+    for_cat = 'general.extra',
+    event = "DeferredUIEnter",
+    keys = { { "<leader>cc", "<cmd>CloakToggle<cr>", mode = { "n" }, desc = "Toggle cloak" }, },
+    after = function(plugin)
+      require('cloak').setup()
+    end,
+  },
+  {
     "comment.nvim",
     for_cat = 'general.extra',
     event = "DeferredUIEnter",

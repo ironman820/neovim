@@ -229,6 +229,7 @@
             mini-bufremove
           ];
           extra = with pkgs.vimPlugins; [
+            cloak-nvim
             comment-nvim
             indent-blankline-nvim
             fidget-nvim
