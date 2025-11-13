@@ -69,6 +69,7 @@ end
 require('lze').load {
   { import = "myLuaConf.plugins.bufferline", },
   { import = "myLuaConf.plugins.bufremove", },
+  -- { import = "myLuaConf.plugins.codecompanion", },
   { import = "myLuaConf.plugins.completion", },
   { import = "myLuaConf.plugins.ibl", },
   { import = "myLuaConf.plugins.noice", },
