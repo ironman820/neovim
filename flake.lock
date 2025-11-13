@@ -1,5 +1,21 @@
 {
   "nodes": {
+    "codecompanion": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1762991110,
+        "narHash": "sha256-SWJEezmlA4MIYKCPoVl9I29hJdu9PfV45FeCpjohfM8=",
+        "owner": "olimorris",
+        "repo": "codecompanion.nvim",
+        "rev": "d1560508a80b72032a88d158a2676ae0e02b032e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "olimorris",
+        "repo": "codecompanion.nvim",
+        "type": "github"
+      }
+    },
     "nixCats": {
       "locked": {
         "lastModified": 1762227818,
@@ -17,11 +33,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1762482733,
-        "narHash": "sha256-g/da4FzvckvbiZT075Sb1/YDNDr+tGQgh4N8i5ceYMg=",
+        "lastModified": 1762943920,
+        "narHash": "sha256-ITeH8GBpQTw9457ICZBddQEBjlXMmilML067q0e6vqY=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "e1ebeec86b771e9d387dd02d82ffdc77ac753abc",
+        "rev": "91c9a64ce2a84e648d0cf9671274bb9c2fb9ba60",
         "type": "github"
       },
       "original": {
@@ -33,6 +49,7 @@
     },
     "root": {
       "inputs": {
+        "codecompanion": "codecompanion",
         "nixCats": "nixCats",
         "nixpkgs": "nixpkgs"
       }
