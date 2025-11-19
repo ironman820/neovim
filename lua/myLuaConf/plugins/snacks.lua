@@ -2,21 +2,6 @@ return {
   {
     "snacks.nvim",
     for_cat = 'general.snacks',
-    opts = {
-      bigfile = { enabled = true },
-      dim = { enabled = true },
-      image = { enabled = true },
-      indent = { enabled = true },
-      input = { enabled = true },
-      lazygit = { enabled = true },
-      notifier = { enabled = true },
-      scope = { enabled = true },
-      scroll = { enabled = true },
-      statuscolumn = { enabled = false }, -- we set this in options.lua
-      -- toggle = { map = LazyVim.safe_keymap_set },
-      words = { enabled = true },
-      zen = { enabled = true },
-    },
     -- stylua: ignore
     keys = {
       {
